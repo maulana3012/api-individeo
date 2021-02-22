@@ -11,7 +11,7 @@ $countPurl = 0;
 $noPurl=0;
 ?>
 
-<script type="text/javascript" th:inline="javascript">
+<script type="text/javascript">
 function onIndivideoReady(smartPlayer){
      
         var personalizedData = {
