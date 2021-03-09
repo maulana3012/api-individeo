@@ -1,6 +1,6 @@
 <?php
-require_once '/var/piv/services/api/setting.php';
-require_once '/var/piv/services/api/phpseclib0.3.0/Net/SFTP.php';
+require_once '0S.setting.php';
+require_once 'phpseclib0.3.0/Net/SFTP.php';
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -31,7 +31,7 @@ if (!$sftp->login("zuricheov-uat", "zurichbuatuateoV"))
 
         $path = "DATA-FEED/";
         $filePath = $path.$filename;
-        $localFile = "/var/piv/services/api/files/";
+        $localFile = "files/";
         $localPath = $localFile.$filename;
 
         if(!$sftp->get($filePath,$localPath))
@@ -99,7 +99,7 @@ if (!$sftp->login("zuricheov-uat", "zurichbuatuateoV"))
                                         COMPONENT_DESCRIPTION,
                                         CYCLE_DATE,
                                         ISSUED_DATE,
-                                        CREATED_AT,
+                                        CREATED_DATE,
                                         STATUS_FLAG) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                                 $stmt = $pdo->prepare($sqlCreated);

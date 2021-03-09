@@ -1,0 +1,11 @@
+[OK][20210309 07:23:58]SFTP TERKONEKSI
+[OK][20210309 07:23:58]Datafeed-Export-20200101.csv Terdownload
+[OK][20210309 07:25:55]SFTP TERKONEKSI
+[OK][20210309 07:25:55]Datafeed-Export-20200101.csv Terdownload
+[OK][20210309 07:27:00]SFTP TERKONEKSI
+[OK][20210309 07:27:00]Datafeed-Export-20200101.csv Terdownload
+[OK][20210309 08:38:00]SFTP TERKONEKSI
+[OK][20210309 08:38:00]Datafeed-Export-eov-test-individeo-20200101.csv Berhasil di Upload ke Server RDS
+[OK][20210309 08:38:00]Datafeed-Export-eov-test-individeo-20200101.csv Berhasil di Upload ke Server RDS
+[OK][20210309 08:40:18]SFTP TERKONEKSI
+[OK][20210309 08:40:18]Datafeed-Export-eov-test-individeo-20200101.csv Berhasil di Upload ke Server RDS

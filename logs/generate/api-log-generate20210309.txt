@@ -1,0 +1,35 @@
+[OK][20210309 08:28:16][][GENERATED]
+                        POLICY_HOLDER_NAME = "",
+                        POLICY_NUMBER = "",
+                        UID = "",
+                        LANDING_PAGE = ""
+[OK][20210309 08:28:16][][GENERATED]
+                        POLICY_HOLDER_NAME = "",
+                        POLICY_NUMBER = "",
+                        UID = "",
+                        LANDING_PAGE = ""
+[OK][20210309 08:31:27][ZP8][GENERATED]
+                        POLICY_HOLDER_NAME = "YANUAR HAMZAH",
+                        POLICY_NUMBER = "01916315",
+                        UID = "",
+                        LANDING_PAGE = ""
+[OK][20210309 08:31:28][ZP8][GENERATED]
+                        POLICY_HOLDER_NAME = "GIGIH SU GIGIH",
+                        POLICY_NUMBER = "01916567",
+                        UID = "",
+                        LANDING_PAGE = ""
+[OK][20210309 08:33:26][ZP8][GENERATED]
+                        POLICY_HOLDER_NAME = "YANUAR HAMZAH",
+                        POLICY_NUMBER = "01916315",
+                        UID = "VMBK7oVYkKdKTig",
+                        LANDING_PAGE = "http://localhost/LDP-ZURICH/?uid=VMBK7oVYkKdKTig"
+[OK][20210309 08:34:02][ZP8][GENERATED]
+                        POLICY_HOLDER_NAME = "YANUAR HAMZAH",
+                        POLICY_NUMBER = "01916315",
+                        UID = "VMBK7oVYkKdKTig",
+                        LANDING_PAGE = "http://localhost/LDP-ZURICH/?uid=VMBK7oVYkKdKTig"
+[OK][20210309 08:34:02][ZP8][GENERATED]
+                        POLICY_HOLDER_NAME = "GIGIH SU GIGIH",
+                        POLICY_NUMBER = "01916567",
+                        UID = "vH3Go5tXyxYq6Jc",
+                        LANDING_PAGE = "http://localhost/LDP-ZURICH/?uid=vH3Go5tXyxYq6Jc"

@@ -1,5 +1,5 @@
 <?php
-require_once 'setting.php';
+require_once '0S.setting.php';
 require_once 'phpseclib0.3.0/Net/SFTP.php';
 set_include_path(get_include_path() . PATH_SEPARATOR . './phpseclib0.3.0');
 

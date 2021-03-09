@@ -1,0 +1,6 @@
+[OK][20210309 08:01:22][tb_data_zurich][IN] Total = 1 records insert. 
+[OK][20210309 08:01:22][tb_data_zurich][IN] Total = 2 records insert. 
+[OK][20210309 08:02:14][tb_data_zurich][IN] Total = 1 records insert. 
+[OK][20210309 08:02:14][tb_data_zurich][IN] Total = 2 records insert. 
+[OK][20210309 08:16:14][tb_data_zurich][IN] Total = 1 records insert. 
+[OK][20210309 08:16:14][tb_data_zurich][IN] Total = 2 records insert. 

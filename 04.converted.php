@@ -1,59 +1,35 @@
-<script src="https://d2ur3inljr7jwd.cloudfront.net/individeo/prod/edge/js/smartEmbed.js" data-bp-on-ready="onIndivideoReady" data-bp-attachment-code="bWDsAjJ2TMyskB4GEWbC-752" data-bp-lang="en-CA"></script>
 <?php
-require_once '/var/piv/services/api/setting.php';
+require_once '0S.setting.php';
 
-$sqlPurl = "SELECT * FROM $DB_TABLE WHERE STATUS_FLAG='PARSED' LIMIT $LIMIT";//limit 3000
-$spurl = $pdo->prepare($sqlPurl);
-$spurl->execute();
-$resultPurl = $spurl->fetchALL();
-$num_of_rows_purl = count($resultPurl);
-$countPurl = 0;
-$noPurl=0;
+$sqlConvert = "SELECT UID,CLIENT_TYPE,POLICY_HOLDER_NAME,POLICY_HOLDER_NAME_ROW_2,LIFE_ASSURED,LIFE_ASSURED_ROW_2,POLICY_HOLDER_DATE_OF_BIRTH,POLICY_HOLDER_DATE_OF_BIRTH_LIFE_ASSURED,POLICY_NUMBER,CURRENCY_1,SUM_ASSURED,CURRENCY_2,PREMIUM_AMOUNT,CODE_FREQUENCY,PAYMENT_FREQUENCY,CODE_PAYMENT_METHOD,PAYMENT_METHOD,AGENT_NAME,POLICY_HOLDER_PHONE_NUMBER,EMAIL_POLICY_HOLDER_NAME,COMPONENT_DESCRIPTION,CODE_COMPONENT_DESCRIPTION,LANDING_PAGE,ISSUED_DATE,CYCLE_DATE,PARSED_AT,GENERATED_AT,STATUS_FLAG,CREATED_AT FROM $DB_TABLE WHERE STATUS_FLAG='PARSED'";
+$convert = $pdo->prepare($sqlConvert);
+$convert->execute();
+$resultConvert = $convert->fetchALL();
+$num_of_rows_convert = count($resultConvert);
+
+ foreach ($resultConvert as $row){
+
+      $UID              = $row['UID'];
+      $encode           = base64_encode($UID);
+      $LANDING_PAGE     = $LINK_ZURICH."".$UID;
+      $GENERATED_AT     = trim(date('Y-m-d H:i:s'));
+      $POLICY_NUMBER    = trim($row['POLICY_NUMBER']);
+
+      $sqlupdate = "UPDATE tb_data_zurich SET LANDING_PAGE=:LANDING_PAGE, GENERATED_AT=:GENERATED_AT, STATUS_FLAG='CONVERTED' WHERE POLICY_NUMBER=:POLICY_NUMBER";
+      $update = $pdo->prepare($sqlupdate);
+      $update ->execute(array(
+        'LANDING_PAGE' => $LANDING_PAGE,
+        'GENERATED_AT' => $GENERATED_AT,
+        'POLICY_NUMBER' => $POLICY_NUMBER,
+      ));
+      $message = '['.$row['CODE_COMPONENT_DESCRIPTION'].'][GENERATED]
+                        POLICY_HOLDER_NAME = "'.$row['POLICY_HOLDER_NAME'].'",
+                        POLICY_NUMBER = "'.$row['POLICY_NUMBER'].'",
+                        UID = "'.$UID.'",
+                        LANDING_PAGE = "'.$LANDING_PAGE.'"';
+      addLog($file_name_log_generated,$message,"[OK]");
+      echo $message;
+
+ }
+
 ?>
-
-<script type="text/javascript">
-function onIndivideoReady(smartPlayer){
-     
-        var personalizedData = {
-            "CLIENT_TYPE" : 'P',
-            "POLICY_HOLDER_NAME" : 'Muhamad Maulana',
-            "POLICY_HOLDER_NAME_ROW_2" : 'Rachman',
-            "LIFE_ASSURED" : 'Rizky Nur',
-            "LIFE_ASSURED_ROW_2" : 'Oktaviani',
-            "POLICY_HOLDER_DATE_OF_BIRTH" : '30/12/1992',
-            "POLICY_HOLDER_DATE_OF_BIRTH_LIFE_ASSURED" : '10/10/1997',
-            "POLICY_NUMBER" : '019876767',
-            "CURRENCY_1" : 'Rp.',
-            "SUM_ASSURED" : '1.000.000.000',
-            "CURRENCY_2" : 'Rp.',
-            "PREMIUM_AMOUNT" : '1.000.000.000',
-            "CODE_FREQUENCY" : 'K'
-            "PAYMENT_FREQUENCY" : 'Quarterly'
-            "CODE_PAYMENT_METHOD" : 'D'
-            "PAYMENT_METHOD" : 'Auto Debit Rekening Bank'
-            "AGENT_NAME" : 'Yopi Anwar'
-            "POLICY_HOLDER_PHONE_NUMBER" : '081317903118'
-            "EMAIL_POLICY_HOLDER_NAME" : 'm.rachman@quadrant-si.id'
-            "CODE_COMPONENT_DESCRIPTION" : 'ZP8'
-            "COMPONENT_DESCRIPTION" : 'Zurich Proteksi 8'
-            "ISSUED_DATE" : '22/02/2021'
-            "CYCLE_DATE" : '20210218'
-            "PARSED_AT" : '22/02/2021'
-            "CREATED_AT" : '22/02/2021'
-            "STATUS_FLAG" : 'CONVERTED'
-        };
-     
-     BEM.bind(BluePlayer.ONMEDIACTA,function(e,p){
-      var ctaName = p&&p.ctaName;
-      var ctaValue = p&&p.ctaValue;
-      
-      var smartPlayer = BluePlayer.current;
-      
-      if(ctaName === "contact"){
-       // code that react on the "contact" event...
-      }
-     });
-     
-     smartPlayer.initIndivideo(personalizedData);
-    }
-</script>

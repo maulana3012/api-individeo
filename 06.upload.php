@@ -1,6 +1,6 @@
 <?php
-require_once '/var/piv/services/api/setting.php';
-require_once '/var/piv/services/api/phpseclib0.3.0/Net/SFTP.php';
+require_once '0S.setting.php';
+require_once 'phpseclib0.3.0/Net/SFTP.php';
 set_include_path(get_include_path() . PATH_SEPARATOR . './phpseclib0.3.0');
 $sftp = new Net_SFTP("sftp.rds.co.id");
 $noSFTP = 0;
@@ -21,10 +21,9 @@ if (!$sftp->login("zuricheov-uat", "zurichbuatuateoV"))
     echo $message."----";
     echo "\n";
 
-        $filePath 	= "/EOV-ZURICH/";
-	$filenameUpload = "Datafeed-Export-eov-20210113.csv";
-        $localFile 	= "/var/piv/services/api/files/";
-        $localPath 	= $localFile.$filenameUpload;
+        $filePath 	= "EOV-ZURICH/";
+        $localFile 	= "files/";
+        $localPath 	= $localFile.$fileExport;
 
 	if ($handle = opendir($localFile))
     	{
@@ -51,7 +50,7 @@ if (!$sftp->login("zuricheov-uat", "zurichbuatuateoV"))
               		$success = $sftp->put($filePath . $file,
                                     $localFile . $file,
                                      NET_SFTP_LOCAL_FILE);
-			$message = "".$filenameUpload." Berhasil di Upload ke Server RDS";
+			$message = "".$fileExport." Berhasil di Upload ke Server RDS";
 			addLog($file_name_log_SFTP, $message, "[OK]");
     			echo $noSFTP++ .".";
     			echo $message."----";
@@ -59,4 +58,6 @@ if (!$sftp->login("zuricheov-uat", "zurichbuatuateoV"))
         	}
     	}
 }
+
+array_map("unlink", glob($localPath));
 ?>

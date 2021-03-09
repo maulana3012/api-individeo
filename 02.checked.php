@@ -1,7 +1,7 @@
 <?php
-require_once '/var/piv/services/api/setting.php';
+require_once '0S.setting.php';
 
-$sqlCheck = "SELECT * FROM $DB_TABLE_CHECK WHERE STATUS_FLAG='CREATED' LIMIT $LIMIT";//limit 3000
+$sqlCheck = "SELECT CLIENT_TYPE,POLICY_HOLDER_NAME,LIFE_ASSURED,POLICY_HOLDER_DATE_OF_BIRTH,POLICY_HOLDER_DATE_OF_BIRTH_LIFE_ASSURED,POLICY_NUMBER,CURRENCY_1,SUM_ASSURED,CURRENCY_2,PREMIUM_AMOUNT,PAYMENT_FREQUENCY,CODE_PAYMENT_METHOD,AGENT_NAME,POLICY_HOLDER_PHONE_NUMBER,EMAIL_POLICY_HOLDER_NAME,COMPONENT_DESCRIPTION,CYCLE_DATE,ISSUED_DATE,CREATED_DATE,STATUS_FLAG FROM $DB_TABLE_CHECK";//limit 3000
 $check = $pdo->prepare($sqlCheck);
 $check->execute();
 $resultCheck = $check->fetchALL();
@@ -27,7 +27,7 @@ if($num_of_rows_check>0){
                         ];
                         //var_dump($dataUpdateCheck);
 
-                        $sqlUpdateCheck = "UPDATE $DB_TABLE_CHECK SET CHECKED_AT=?, POLICY_HOLDER_NAME=?, STATUS_FLAG='CHECKED' WHERE POLICY_NUMBER=?";
+                        $sqlUpdateCheck = "UPDATE $DB_TABLE_CHECK SET CHECKED_DATE=?, POLICY_HOLDER_NAME=?, STATUS_FLAG='CHECKED' WHERE POLICY_NUMBER=?";
                         $stmt = $pdo->prepare($sqlUpdateCheck);
                         $stmt->execute($dataUpdateCheck);
 
@@ -52,7 +52,7 @@ if($num_of_rows_check>0){
                         ];
                         //var_dump($dataUpdateCheck);
 
-                        $sqlUpdateCheck = "UPDATE $DB_TABLE_CHECK SET CHECKED_AT=?, LIFE_ASSURED=?, STATUS_FLAG='CHECKED' WHERE POLICY_NUMBER=?";
+                        $sqlUpdateCheck = "UPDATE $DB_TABLE_CHECK SET CHECKED_DATE=?, LIFE_ASSURED=?, STATUS_FLAG='CHECKED' WHERE POLICY_NUMBER=?";
                         $stmt = $pdo->prepare($sqlUpdateCheck);
                         $stmt->execute($dataUpdateCheck);
 
@@ -74,7 +74,7 @@ if($num_of_rows_check>0){
                                 $row['POLICY_NUMBER']
                         ];
 
-                        $sqlUpdateCheck = "UPDATE $DB_TABLE_CHECK SET CHECKED_AT=?, STATUS_FLAG='CHECKED' WHERE POLICY_NUMBER=?";
+                        $sqlUpdateCheck = "UPDATE $DB_TABLE_CHECK SET CHECKED_DATE=?, STATUS_FLAG='CHECKED' WHERE POLICY_NUMBER=?";
                         $stmt = $pdo->prepare($sqlUpdateCheck);
                         $stmt->execute($dataUpdateCheck);
 
@@ -102,7 +102,7 @@ if($num_of_rows_check>0){
                         ];
                         //var_dump($dataUpdateCheck);
 
-                        $sqlUpdateCheck = "UPDATE $DB_TABLE_CHECK SET CHECKED_AT=?, AGENT_NAME=?, STATUS_FLAG='CHECKED' WHERE POLICY_NUMBER=?";
+                        $sqlUpdateCheck = "UPDATE $DB_TABLE_CHECK SET CHECKED_DATE=?, AGENT_NAME=?, STATUS_FLAG='CHECKED' WHERE POLICY_NUMBER=?";
                         $stmt = $pdo->prepare($sqlUpdateCheck);
                         $stmt->execute($dataUpdateCheck);
 
@@ -127,7 +127,7 @@ if($num_of_rows_check>0){
                         ];
                         //var_dump($dataUpdateCheck);
 
-                        $sqlUpdateCheck = "UPDATE $DB_TABLE_CHECK SET CHECKED_AT=?, EMAIL_POLICY_HOLDER_NAME=?, STATUS_FLAG='CHECKED' WHERE POLICY_NUMBER=?";
+                        $sqlUpdateCheck = "UPDATE $DB_TABLE_CHECK SET CHECKED_DATE=?, EMAIL_POLICY_HOLDER_NAME=?, STATUS_FLAG='CHECKED' WHERE POLICY_NUMBER=?";
                         $stmt = $pdo->prepare($sqlUpdateCheck);
                         $stmt->execute($dataUpdateCheck);
 
@@ -149,7 +149,7 @@ if($num_of_rows_check>0){
                                 $row['POLICY_NUMBER']
                         ];
 
-                        $sqlUpdateCheck = "UPDATE $DB_TABLE_CHECK SET CHECKED_AT=?, STATUS_FLAG='CHECKED' WHERE POLICY_NUMBER=?";
+                        $sqlUpdateCheck = "UPDATE $DB_TABLE_CHECK SET CHECKED_DATE=?, STATUS_FLAG='CHECKED' WHERE POLICY_NUMBER=?";
                         $stmt = $pdo->prepare($sqlUpdateCheck);
                         $stmt->execute($dataUpdateCheck);
 
@@ -164,7 +164,7 @@ if($num_of_rows_check>0){
         }
 }
 
-$localFile = "/var/piv/services/api/files/";
+$localFile = "files/";
 $localPath = $localFile.$filename;
 array_map("unlink", glob($localPath));
 ?>

@@ -72,7 +72,7 @@
  * Used to do RSA encryption.
  */
 if (!class_exists('Math_BigInteger')) {
-    require_once('/var/piv/services/api/phpseclib0.3.0/Math/BigInteger.php');
+    require_once('phpseclib0.3.0/Math/BigInteger.php');
 }
 
 /**
@@ -84,21 +84,21 @@ if (!class_exists('Math_BigInteger')) {
  * Include Crypt_DES
  */
 if (!class_exists('Crypt_DES')) {
-    require_once('/var/piv/services/api/phpseclib0.3.0/Crypt/DES.php');
+    require_once('phpseclib0.3.0/Crypt/DES.php');
 }
 
 /**
  * Include Crypt_TripleDES
  */
 if (!class_exists('Crypt_TripleDES')) {
-    require_once('/var/piv/services/api/phpseclib0.3.0/Crypt/TripleDES.php');
+    require_once('phpseclib0.3.0/Crypt/TripleDES.php');
 }
 
 /**
  * Include Crypt_RC4
  */
 if (!class_exists('Crypt_RC4')) {
-    require_once('/var/piv/services/api/phpseclib0.3.0/Crypt/RC4.php');
+    require_once('phpseclib0.3.0/Crypt/RC4.php');
 }
 
 /**
@@ -109,7 +109,7 @@ if (!class_exists('Crypt_RC4')) {
 // call function_exists() a second time to stop the require_once from being called outside
 // of the auto loader
 if (!function_exists('crypt_random') && !class_exists('Crypt_Random') && !function_exists('crypt_random')) {
-    require_once('/var/piv/services/api/phpseclib0.3.0/Crypt/Random.php');
+    require_once('phpseclib0.3.0/Crypt/Random.php');
 }
 
 /**#@+

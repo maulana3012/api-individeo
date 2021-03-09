@@ -1,7 +1,7 @@
 <?php
-require_once '/var/piv/services/api/setting.php';
+require_once '0S.setting.php';
 
-$sqlParsing = "SELECT * FROM $DB_TABLE_CHECK WHERE STATUS_FLAG='CHECKED' LIMIT $LIMIT";//limit 3000
+$sqlParsing = "SELECT CLIENT_TYPE,POLICY_HOLDER_NAME,LIFE_ASSURED,POLICY_HOLDER_DATE_OF_BIRTH,POLICY_HOLDER_DATE_OF_BIRTH_LIFE_ASSURED,POLICY_NUMBER,CURRENCY_1,SUM_ASSURED,CURRENCY_2,PREMIUM_AMOUNT,PAYMENT_FREQUENCY,CODE_PAYMENT_METHOD,AGENT_NAME,POLICY_HOLDER_PHONE_NUMBER,EMAIL_POLICY_HOLDER_NAME,COMPONENT_DESCRIPTION,CYCLE_DATE,ISSUED_DATE,CREATED_DATE,STATUS_FLAG FROM $DB_TABLE_CHECK WHERE STATUS_FLAG='CHECKED'";
 $parsing = $pdo->prepare($sqlParsing);
 $parsing->execute();
 $resultParsing = $parsing->fetchALL();
@@ -14,6 +14,7 @@ if ($num_of_rows_parsing>0) {
     foreach ($resultParsing as $dataParsing) {
 
         $InputParsed = [
+                $UID         = randomString(15),
                 $CLIENT_TYPE = trim($dataParsing['CLIENT_TYPE']),
                 $POLICY_HOLDER_NAME = trim(parsing($dataParsing['POLICY_HOLDER_NAME'],$max_add,1)),
                 $POLICY_HOLDER_NAME_ROW_2 = trim(parsing($dataParsing['POLICY_HOLDER_NAME'],$max_add,2)),
@@ -38,12 +39,13 @@ if ($num_of_rows_parsing>0) {
                 $ISSUED_DATE = trim($dataParsing['ISSUED_DATE']),
                 $CYCLE_DATE = trim($dataParsing['CYCLE_DATE']),
                 $PARSED_AT = trim(date('Y-m-d H:i:s')),
-                $CREATED_AT = trim($dataParsing['CHECKED_AT']),
+                $CREATED_AT = trim($dataParsing['CHECKED_DATE']),
                 $STATUS_FLAG = 'PARSED'];
 
         //var_dump($InputParsed);
 
         $sqlInputParsed = "INSERT INTO $DB_TABLE (
+                UID,
                 CLIENT_TYPE,
                 POLICY_HOLDER_NAME,
                 POLICY_HOLDER_NAME_ROW_2,
@@ -69,7 +71,7 @@ if ($num_of_rows_parsing>0) {
                 CYCLE_DATE,
                 PARSED_AT,
                 CREATED_AT,
-                STATUS_FLAG) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                STATUS_FLAG) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                          $stmt = $pdo->prepare($sqlInputParsed);
                          $stmt->execute($InputParsed);
                          $countParsing++;
